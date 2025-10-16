@@ -29,6 +29,7 @@ public class AppMain {
         LineCounterService counter = LineCounterService.getInstance();
 
         LoggerUtil.log("Image Vertical Line Counter Started");
+        LoggerUtil.log("Tip: Sample test images are located in the 'images' directory of this project.");
         LoggerUtil.log("Provide one image path at a time, or type 'Q' to quit.");
 
         String imagePath = null;
@@ -37,7 +38,7 @@ public class AppMain {
         if (args.length == 1) {
             imagePath = args[0].trim();
         } else if (args.length > 1) {
-            LoggerUtil.log("Error: Invalid number of arguments. Please provide exactly one image path.");
+            LoggerUtil.error("Invalid number of arguments. Please provide exactly one image path.");
         }
 
         // --- Main program loop ---
@@ -45,7 +46,7 @@ public class AppMain {
             try {
                 // If no valid argument, prompt user
                 if (imagePath == null || imagePath.isEmpty()) {
-                    System.out.print("\nEnter the absolute path of the image file (or Q to quit): ");
+                    System.out.print("Enter the absolute path of the image file (or Q to quit): ");
                     String inputLine = scanner.nextLine().trim();
 
                     // Exit condition
@@ -57,8 +58,8 @@ public class AppMain {
                     // Split by whitespace to check for multiple paths
                     String[] parts = inputLine.split("\\s+");
                     if (parts.length != 1) {
-                        LoggerUtil.log("Error: Please provide exactly one image path at a time.");
-                        continue; // reprompt
+                        LoggerUtil.error("Please provide exactly one image path at a time.");
+                        continue; // reprompt the user
                     }
 
                     imagePath = parts[0];
@@ -72,7 +73,7 @@ public class AppMain {
                 // Validate file existence
                 File file = new File(imagePath);
                 if (!file.exists()) {
-                    LoggerUtil.log("Error: File not found. Please enter a valid image path.");
+                    LoggerUtil.error("File not found. Please enter a valid image path.");
                     imagePath = null; // re-prompt
                     continue;
                 }
@@ -82,14 +83,14 @@ public class AppMain {
                 BufferedImage image = reader.readImage(imagePath);
                 int count = counter.countVerticalLines(image);
 
-                LoggerUtil.log("Number of vertical black lines: " + count);
+                LoggerUtil.log("File processed: " + imagePath + " | Number of vertical black lines: " + count);
 
             } catch (IllegalArgumentException e) {
-                LoggerUtil.log("Error: " + e.getMessage());
+                LoggerUtil.error("Illegal or inappropriate argument error: " + e.getMessage());
             } catch (ImageProcessingException e) {
-                LoggerUtil.log("Image processing error: " + e.getMessage());
+                LoggerUtil.error("Image processing error: " + e.getMessage());
             } catch (Exception e) {
-                LoggerUtil.log("Unexpected error: " + e.getMessage());
+                LoggerUtil.error("Unexpected error: " + e.getMessage());
             }
 
             // Reset path for next prompt

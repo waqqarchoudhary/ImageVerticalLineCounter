@@ -16,10 +16,10 @@ Image Properties:
 3. Each line is a continuous straight line from the top to the bottom of the image.
 
 Test Images:
-  img_1.jpg  (1 line)
-  img_2.jpg  (3 lines)
-  img_3.jpg  (1 line)
-  img_4.jpg  (7 lines)
+  img_1.jpg  (1 line)   'images/img_1.jpg'
+  img_2.jpg  (3 lines)  'images/img_2.jpg'
+  img_3.jpg  (1 line)   'images/img_3.jpg'
+  img_4.jpg  (7 lines)  'images/img_4.jpg'
 
 Build Instructions:
 -------------------
@@ -61,6 +61,7 @@ Notes:
 ------
 - Only JPG images are supported.
 - The algorithm assumes lines are perfectly vertical and continuous from top to bottom.
+- For a detailed explanation of design principles, architecture, and framework choices, please refer to the accompanying Design_Reasoning.txt file.
 
 Contact:
 --------
