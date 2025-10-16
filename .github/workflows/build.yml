@@ -38,3 +38,9 @@ jobs:
       - name: List JAR file
         run: |
           ls -lh dist/*.jar
+
+      - name: Upload JAR as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ImageVerticalLineCounter-jar
+          path: dist/ImageVerticalLineCounter.jar
