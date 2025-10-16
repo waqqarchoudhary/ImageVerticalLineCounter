@@ -62,6 +62,7 @@ The application prints the number of vertical black lines found in the image.
 - Only JPG images are supported.
 - The algorithm assumes lines are perfectly vertical and continuous from top to bottom.
 - For a detailed explanation of design principles, architecture, and framework choices, please refer to the accompanying `Design_Reasoning.md` file.
+- A Troubleshooting Guide is included with this project. If the application fails to compile the first time, please refer to the file `Troubleshooting_Guide.md` for detailed steps on resolving common build issues across different environments (Windows PowerShell, Git Bash, macOS, etc.).
 
 ## Contact
 For any issues, contact waqqarchoudhary@gmail.com

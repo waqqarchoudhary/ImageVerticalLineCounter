@@ -26,7 +26,7 @@ Build Instructions:
 1. Open a terminal/command prompt in the project root directory.
 2. Compile the source code to the `bin` directory (keep .class files out of project files):
 
-	javac -d bin src/com/tmmc/assignment/**/*.java
+	javac -d bin src/com/tmmc/assignment/**/*.java ()
 
 3. Ensure the `bin` directory contains the compiled `.class` files.
 
@@ -62,6 +62,8 @@ Notes:
 - Only JPG images are supported.
 - The algorithm assumes lines are perfectly vertical and continuous from top to bottom.
 - For a detailed explanation of design principles, architecture, and framework choices, please refer to the accompanying Design_Reasoning.txt file.
+- A Troubleshooting Guide is included with this project. If the application fails to compile the first time, please refer to the file Troubleshooting_Guide.txt for detailed steps on resolving common build issues across different environments (Windows PowerShell, Git Bash, macOS, etc.).
+
 
 Contact:
 --------
