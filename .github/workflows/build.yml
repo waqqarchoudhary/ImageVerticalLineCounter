@@ -1,0 +1,40 @@
+name: Build Java App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Compile Java source files
+        run: |
+          mkdir -p bin
+          javac -d bin src/com/tmmc/assignment/**/*.java
+
+      - name: List compiled class files
+        run: |
+          find bin -name "*.class"
+
+      - name: Package JAR
+        run: |
+          mkdir -p dist
+          jar --create --file dist/ImageVerticalLineCounter.jar --main-class com.tmmc.assignment.AppMain -C bin .
+
+      - name: List JAR file
+        run: |
+          ls -lh dist/*.jar
