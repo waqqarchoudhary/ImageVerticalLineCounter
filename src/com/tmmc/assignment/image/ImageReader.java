@@ -1,4 +1,8 @@
 package com.tmmc.assignment.image;
 
-public class ImageReader {
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+public interface ImageReader {
+    BufferedImage readImage(String path) throws IOException;
 }
