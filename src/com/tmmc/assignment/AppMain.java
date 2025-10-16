@@ -47,4 +47,6 @@ public class AppMain {
             throw new ImageProcessingException("Unexpected error while processing image", e);
         }
     }
+
+
 }
