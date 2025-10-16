@@ -7,6 +7,7 @@ import com.tmmc.assignment.service.LineCounterService;
 import com.tmmc.assignment.util.LoggerUtil;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -21,31 +22,51 @@ public class AppMain {
 
     public static void main (String[] args) {
 
-        String imagePath;
+        Scanner scanner = new Scanner(System.in);
+        LineCounterService counter = LineCounterService.getInstance();
 
-        if (args.length == 0) {
-            System.out.print("Enter the absolute path of the image file: ");
-            Scanner scanner = new Scanner(System.in);
-            imagePath = scanner.nextLine().trim();
-            scanner.close();
-        }else {
-            imagePath = args[0];
+        LoggerUtil.log("Image Vertical Line Counter Started");
+        LoggerUtil.log("Type the full image path or 'Q' to quit.");
+
+        while (true) {
+            System.out.print("\nEnter the absolute path of the image file (or Q to quit): ");
+            String imagePath = scanner.nextLine().trim();
+
+            // Exit condition
+            if (imagePath.equalsIgnoreCase("q")) {
+                LoggerUtil.log("Exiting application. Goodbye!");
+                break;
+            }
+
+            try {
+                // Expand '~' for macOS/Linux
+                if (imagePath.startsWith("~")) {
+                    imagePath = imagePath.replaceFirst("^~", System.getProperty("user.home"));
+                }
+
+                // Normalize relative paths
+                File file = new File(imagePath);
+                if (!file.exists()) {
+                    LoggerUtil.log("Error: File not found. Please enter a valid image path.");
+                    continue;
+                }
+
+                ImageReader reader = ImageReaderFactory.getReader(imagePath);
+                BufferedImage image = reader.readImage(imagePath);
+
+                int count = counter.countVerticalLines(image);
+                LoggerUtil.log("Number of vertical black lines: " + count);
+
+            } catch (IllegalArgumentException e) {
+                LoggerUtil.log("Error: " + e.getMessage());
+            } catch (ImageProcessingException e) {
+                LoggerUtil.log("Image processing error: " + e.getMessage());
+            } catch (Exception e) {
+                LoggerUtil.log("Unexpected error: " + e.getMessage());
+            }
         }
 
-        try{
-            ImageReader reader = ImageReaderFactory.getReader(imagePath);
-            BufferedImage image = reader.readImage(imagePath);
-
-            LineCounterService counter = LineCounterService.getInstance();
-            int count = counter.countVerticalLines(image);
-
-            LoggerUtil.log("Number of vertical black lines: " + count);
-
-        } catch (IllegalArgumentException e) {
-           LoggerUtil.log("Error: " + e.getMessage());
-        } catch (Exception e) {
-            throw new ImageProcessingException("Unexpected error while processing image", e);
-        }
+        scanner.close();
     }
 
 
