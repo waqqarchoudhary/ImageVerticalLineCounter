@@ -37,7 +37,16 @@ public class LineCounterService {
 
             for(int y = 0; y < height; y++){
                 Color c = new Color(image.getRGB(x,y));
-
+                if(isBlack(c)){
+                    hasBlack = true;
+                    break;
+                }
+            }
+            if(hasBlack && !inLine){
+                count++;
+                inLine = true;
+            } else if (!hasBlack) {
+                inLine = false;
             }
         }
         return count;
