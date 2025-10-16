@@ -12,14 +12,19 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * TMMC Coding Assignment
- * Author: Waqqar Choudhary
+ * Main application class for the TMMC Coding Assignment.
+ * <p>
+ * This console application counts the number of vertical black lines in a black and white JPG image.
+ * </p>
  *
- * AppMain
- * Description: Console app that counts the number of vertical black lines in a black and white JPG image.
+ * @author Waqqar Choudhary
  */
 public class AppMain {
 
+    /**
+     * Entry point for the application. Handles user input and coordinates image processing.
+     * @param args Command-line arguments (not used)
+     */
     public static void main (String[] args) {
 
         Scanner scanner = new Scanner(System.in);
