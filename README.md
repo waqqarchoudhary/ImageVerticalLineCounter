@@ -16,12 +16,14 @@ This Windows console application counts the number of vertical black lines in a 
 3. Each line is a continuous straight line from the top to the bottom of the image.
 
 ## Test Images
-| Image Name   | Actual Number of Lines |
-|--------------|-----------------------|
-| img_1.jpg    | 1                     |
-| img_2.jpg    | 3                     |
-| img_3.jpg    | 1                     |
-| img_4.jpg    | 7                     |
+
+| Image Name | Expected Lines | Preview |
+|-------------|----------------|----------|
+| [img_1.jpg](images/img_1.jpg) | 1 | ![img_1](images/img_1.jpg) |
+| [img_2.jpg](images/img_2.jpg) | 3 | ![img_2](images/img_2.jpg) |
+| [img_3.jpg](images/img_3.jpg) | 1 | ![img_3](images/img_3.jpg) |
+| [img_4.jpg](images/img_4.jpg) | 7 | ![img_4](images/img_4.jpg) |
+
 
 ## Build Instructions
 1. Open a terminal/command prompt in the project root directory.
